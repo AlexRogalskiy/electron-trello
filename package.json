@@ -1,0 +1,84 @@
+{
+  "name": "whale",
+  "productName": "Whale",
+  "version": "0.17.0",
+  "description": "Whale app",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/1000ch/whale"
+  },
+  "author": {
+    "name": "Shogo Sensui",
+    "email": "shogo.sensui@gmail.com",
+    "url": "https://github.com/1000ch"
+  },
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "postversion": "git push && git push --tags",
+    "test": "xo",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --macos --linux --windows"
+  },
+  "dependencies": {
+    "devtron": "^1.4.0",
+    "electron-config": "^2.0.0",
+    "electron-context-menu": "^0.16.0",
+    "electron-debug": "^3.0.1",
+    "electron-dl": "^3.0.0"
+  },
+  "devDependencies": {
+    "electron": "^8.1.0",
+    "electron-builder": "^22.4.0",
+    "xo": "^0.27.0"
+  },
+  "build": {
+    "files": [
+      "**/*",
+      "!asset"
+    ],
+    "appId": "net.1000ch.whale",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "electronUpdaterCompatibility": ">=2.15.0",
+      "darkModeSupport": true
+    },
+    "dmg": {
+      "iconSize": 160,
+      "contents": [
+        {
+          "x": 180,
+          "y": 170
+        },
+        {
+          "x": 480,
+          "y": 170,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "snap"
+      ],
+      "synopsis": "Unofficial Trello app",
+      "description": "Whale is unofficial app for Trello.",
+      "category": "Productivity"
+    },
+    "win": {
+      "verifyUpdateCodeSignature": false
+    }
+  },
+  "xo": {
+    "esnext": true,
+    "space": 2,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}
